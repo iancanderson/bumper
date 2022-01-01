@@ -10,8 +10,8 @@ class SongsTest < ApplicationSystemTestCase
 
     assert_selector "h1", text: "Song Queue"
 
-    assert_selector "li:nth-child(1)", text: top.title
-    assert_selector "li:nth-child(2)", text: middle.title
-    assert_selector "li:nth-child(3)", text: bottom.title
+    assert_selector "tr:nth-child(1)", text: top.title
+    assert_selector "tr:nth-child(2)", text: middle.title
+    assert_selector "tr:nth-child(3)", text: bottom.title
   end
 end
