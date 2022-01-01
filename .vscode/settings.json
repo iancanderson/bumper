@@ -1,0 +1,9 @@
+{
+  "ruby.lint": {
+    "standard": { "useBundler": true }
+  },
+  "ruby.useLanguageServer": true,
+  "ruby.format": "standard",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rebornix.ruby"
+}
