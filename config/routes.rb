@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  get "pages/about", as: :about
   root "songs#index"
+  resources :recordings, only: :index
+  get "pages/about", as: :about
 end

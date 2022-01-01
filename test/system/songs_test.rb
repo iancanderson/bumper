@@ -14,4 +14,14 @@ class SongsTest < ApplicationSystemTestCase
     assert_selector "tr:nth-child(2)", text: middle.title
     assert_selector "tr:nth-child(3)", text: bottom.title
   end
+
+  test "doesn't show songs that have been recorded" do
+    recorded_song = create(:recording).song
+
+    visit root_url
+
+    assert_selector "h1", text: "Song Queue"
+
+    refute_selector "tr:nth-child(1)", text: recorded_song.title
+  end
 end

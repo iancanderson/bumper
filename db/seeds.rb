@@ -7,6 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Song.find_or_create_by!(artist: "Iron & Wine", title: "Passing Afternoon") do |song|
-  song.queue_position = Song.minimum(:queue_position) - 1
+  song.queue_position = (Song.minimum(:queue_position) || 1) - 1
   song.recording = Recording.create!(url: "https://www.youtube.com/watch?v=5LhtxcRCSp8")
 end

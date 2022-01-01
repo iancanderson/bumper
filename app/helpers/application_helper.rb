@@ -10,6 +10,7 @@ module ApplicationHelper
   def nav_items
     [
       NavItem.new("Song Queue", root_path),
+      NavItem.new("Recordings", recordings_path),
       NavItem.new("About", about_path)
     ]
   end
