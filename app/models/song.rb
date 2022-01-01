@@ -1,3 +1,3 @@
 class Song < ApplicationRecord
-  belongs_to :recording
+  belongs_to :recording, required: false
 end
