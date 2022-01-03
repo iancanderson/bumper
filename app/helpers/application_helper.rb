@@ -12,7 +12,11 @@ module ApplicationHelper
       NavItem.new("Song Queue", root_path),
       NavItem.new("Recordings", recordings_path),
       NavItem.new("About", about_path)
-    ]
+    ].tap do |items|
+      if current_user&.admin?
+        items << NavItem.new("Add a Song", new_song_path)
+      end
+    end
   end
 
   def current_page_title

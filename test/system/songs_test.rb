@@ -24,4 +24,33 @@ class SongsTest < ApplicationSystemTestCase
 
     refute_selector "tr:nth-child(1)", text: recorded_song.title
   end
+
+  test "non-admin cannot add songs" do
+    non_admin = create(:user)
+    passwordless_sign_in(non_admin)
+
+    visit root_url
+    refute_selector "h1", text: "Add a Song"
+  end
+
+  test "admin can add a new song" do
+    admin = create(:user, :admin)
+    passwordless_sign_in(admin)
+
+    existing_song = create(:song)
+
+    visit root_url
+    click_on "Add a Song"
+
+    assert_selector "h1", text: "Add a Song"
+
+    fill_in "Artist", with: "The Beatles"
+    fill_in "Title", with: "Michelle"
+
+    click_on "Create Song"
+
+    assert_selector "h1", text: "Song Queue"
+    assert_selector "tr:nth-child(1)", text: existing_song.title
+    assert_selector "tr:nth-child(2)", text: "Michelle"
+  end
 end
