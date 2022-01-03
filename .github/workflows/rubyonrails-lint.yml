@@ -30,13 +30,12 @@ jobs:
       - name: Run linters
         run: |
           bin/bundle exec standardrb --parallel
-      - name: Setup test database
+      - name: Run tests
         env:
           RAILS_ENV: test
-          PGUSER: bumper
-          POSTGRES_DB: bumper_test
-          PGHOST: localhost
+          DATABASE_URL: "postgres://postgres@localhost:5432/bumper_test"
         run: |
           bin/rails db:setup
-      - name: Run tests
-        run: bin/rails test
+          bin/rails test
+
+
