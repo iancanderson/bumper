@@ -1,5 +1,5 @@
 class RecordingsController < ApplicationController
   def index
-    @recordings = Recording.all
+    @recordings = Recording.order(created_at: :desc)
   end
 end

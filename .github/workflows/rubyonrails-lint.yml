@@ -34,5 +34,6 @@ jobs:
         run: |
           bin/rails db:setup
           bin/rails test
+          bin/rails test:system
 
 

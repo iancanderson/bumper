@@ -8,6 +8,8 @@ class RecordingsTest < ApplicationSystemTestCase
 
     visit recordings_url
 
+    assert_selector "h1", text: "Recordings"
+
     assert_selector "tr:nth-child(1)", text: newest.song.title
     assert_selector "tr:nth-child(2)", text: middle.song.title
     assert_selector "tr:nth-child(3)", text: oldest.song.title
