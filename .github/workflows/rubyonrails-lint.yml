@@ -11,14 +11,13 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  run-lint:
+  lint-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+        uses: ruby/setup-ruby@v1.90.0
         with:
           bundler-cache: true
       # Add or Replace any other security checks here
