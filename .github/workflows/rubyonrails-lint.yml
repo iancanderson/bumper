@@ -34,6 +34,7 @@ jobs:
         env:
           RAILS_ENV: test
           PGUSER: bumper
+          POSTGRES_DB: bumper_test
         run: |
           bin/rails db:setup
       - name: Run tests
