@@ -1,0 +1,40 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies, and  run linters
+name: Lint and test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.1-alpine
+        ports: ["5432:5432"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1.90.0
+        with:
+          bundler-cache: true
+      - name: Run linters
+        run: |
+          bin/bundle exec standardrb --parallel
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: "postgres://postgres@localhost:5432/bumper_test"
+        run: |
+          bin/rails db:setup
+          bin/rails assets:precompile
+          bin/rails test
+          bin/rails test:system
+
+
