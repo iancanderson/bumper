@@ -35,6 +35,7 @@ jobs:
           RAILS_ENV: test
           PGUSER: bumper
           POSTGRES_DB: bumper_test
+          PGHOST: localhost
         run: |
           bin/rails db:setup
       - name: Run tests
