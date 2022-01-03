@@ -33,6 +33,7 @@ jobs:
           DATABASE_URL: "postgres://postgres@localhost:5432/bumper_test"
         run: |
           bin/rails db:setup
+          bin/rails assets:precompile
           bin/rails test
           bin/rails test:system
 
