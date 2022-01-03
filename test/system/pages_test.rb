@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class PagesTest < ApplicationSystemTestCase
   test "about page" do
-    visit about_url
+    visit root_url
+    click_on "About"
 
     assert_selector "h1", text: "About"
   end

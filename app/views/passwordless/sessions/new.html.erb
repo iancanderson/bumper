@@ -1,0 +1,31 @@
+<%= form_for @session, url: users.sign_in_path, class: "space-y-8 divide-y divide-gray-200", data: {turbo: false} do |f| %>
+  <% email_field_name = :"passwordless[#{@email_field}]" %>
+
+  <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+    <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
+      <div>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+          I'll send you an email with a link to sign in.
+        </p>
+      </div>
+      <div class="space-y-6 sm:space-y-5">
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <label for="passwordless_email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+            Email address
+          </label>
+          <div class="mt-1 sm:mt-0 sm:col-span-2">
+						<%= email_field_tag email_field_name, params.fetch(email_field_name, nil), class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
+						<p class="mt-2 text-sm text-gray-500">This won't be shared publicly - it's only used to sign in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-5">
+    <div class="flex justify-end">
+			<%= f.submit I18n.t('passwordless.sessions.new.submit'), class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    </div>
+  </div>
+
+<% end %>

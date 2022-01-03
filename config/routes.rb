@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root "songs#index"
   resources :recordings, only: :index
   resources :songs, only: [:new, :create]
+  resources :users, only: [:new, :create]
   get "pages/about", as: :about
 end
