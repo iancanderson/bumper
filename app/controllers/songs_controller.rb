@@ -8,10 +8,12 @@ class SongsController < ApplicationController
   end
 
   def create
-    song = Song.new(song_params)
-    song.put_in_back_of_queue
-    if song.save
-      redirect_to root_path
+    @song = Song.new(song_params)
+    @song.put_in_back_of_queue
+    if @song.save
+      redirect_to new_song_path, notice: "Song added to queue!"
+    else
+      redirect_to new_song_path, alert: "Error adding #{@song.title} by #{@song.artist}"
     end
   end
 

@@ -48,8 +48,8 @@ class SongsTest < ApplicationSystemTestCase
     fill_in "Title", with: "Michelle"
 
     click_on "Create Song"
+    click_on "Song Queue"
 
-    assert_selector "h1", text: "Song Queue"
     assert_selector "tr:nth-child(1)", text: existing_song.title
     assert_selector "tr:nth-child(2)", text: "Michelle"
   end
